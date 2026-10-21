@@ -1,11 +1,11 @@
 {
   "products": [
     {
-      "name": "Repuestos para motor",
-      "description": "Consultá por cilindros, pistones, juntas y otras piezas según tu modelo.",
-      "price": "Consultar precio",
+      "name": "Prueba prueba",
+      "description": "consulta de prueba",
+      "price": "10000 prueba",
       "category": "motor",
-      "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80"
+      "image": "/motor-one/imagenes/descarga-16-.jpg"
     },
     {
       "name": "Pastillas y zapatas de freno",
