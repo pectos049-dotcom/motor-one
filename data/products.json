@@ -12,7 +12,7 @@
       "description": "Opciones para revisar según la marca y el modelo de tu motocicleta.",
       "price": "Consultar precio",
       "category": "frenos",
-      "image": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80"
+      "image": "/motor-one/imagenes/images.jpg"
     },
     {
       "name": "prueba de transmison",
