@@ -1,0 +1,39 @@
+backend:
+  name: turbo-github
+  turbo_site_id: PENDIENTE
+  branch: main
+
+media_folder: "imagenes"
+public_folder: "/motor-one/imagenes"
+
+locale: "es"
+
+collections:
+  - name: "productos"
+    label: "Productos"
+    files:
+      - name: "catalogo"
+        label: "Catálogo de repuestos"
+        file: "data/products.json"
+        format: "json"
+        fields:
+          - name: "products"
+            label: "Productos"
+            widget: "list"
+            fields:
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text", required: false }
+              - { label: "Precio", name: "price", widget: "string", default: "Consultar precio" }
+              - label: "Categoría"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Motor", value: "motor" }
+                  - { label: "Frenos", value: "frenos" }
+                  - { label: "Transmisión", value: "transmision" }
+                  - { label: "Electricidad", value: "electricidad" }
+                  - { label: "Suspensión", value: "suspension" }
+                  - { label: "Ruedas", value: "ruedas" }
+                  - { label: "Lubricantes", value: "lubricantes" }
+                  - { label: "Accesorios", value: "accesorios" }
+              - { label: "Foto del producto", name: "image", widget: "image", required: false }
