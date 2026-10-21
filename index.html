@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Motor One Paraguay: repuestos y accesorios para motos. Consulta disponibilidad y precios por WhatsApp.">
+  <title>Motor One | Repuestos para motos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #101010;
+      --panel: #191919;
+      --red: #e52335;
+      --white: #ffffff;
+      --muted: #a5a5a5;
+      --line: #303030;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { display: block; width: 100%; }
+    .container { width: min(var(--max), 90%); margin: auto; }
+
+    .topbar {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(16,16,16,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+    .logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .logo span { color: var(--red); }
+    .logo small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 3px;
+      margin-top: 6px;
+    }
+    .navlinks { display: flex; gap: 27px; align-items: center; }
+    .navlinks a {
+      color: #dedede;
+      font-size: 12px;
+      font-weight: 700;
+      transition: color .2s;
+    }
+    .navlinks a:hover { color: var(--red); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      background: var(--red);
+      color: white;
+      padding: 13px 19px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      cursor: pointer;
+      transition: .2s;
+    }
+    .btn:hover { background: #bd1727; transform: translateY(-2px); }
+    .btn-outline { border-color: #555; background: transparent; }
+    .btn-outline:hover { border-color: var(--red); background: transparent; }
+
+    .hero {
+      position: relative;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, #101010 0%, rgba(16,16,16,.95) 28%, rgba(16,16,16,.45) 100%),
+        url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1900&q=85') center 48% / cover;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--red);
+    }
+    .hero-content { position: relative; z-index: 1; padding: 80px 0; max-width: 650px; }
+    .eyebrow {
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1, h2, h3 { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; }
+    h1 {
+      font-size: clamp(54px, 8vw, 94px);
+      line-height: .94;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+    h1 span { color: var(--red); }
+    .hero p { max-width: 450px; color: #c4c4c4; font-size: 15px; margin-bottom: 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 25px 20px;
+      border-right: 1px solid var(--line);
+    }
+    .feature:last-child { border: 0; }
+    .feature-icon { color: var(--red); font-size: 25px; }
+    .feature strong { display: block; font-size: 11px; letter-spacing: .5px; }
+    .feature span:last-child { display: block; color: var(--muted); font-size: 10px; margin-top: 3px; }
+
+    section { padding: 82px 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .section-head h2 { font-size: clamp(36px, 5vw, 50px); line-height: 1; }
+    .section-head h2 span { color: var(--red); }
+    .section-head p { max-width: 350px; color: var(--muted); font-size: 12px; }
+
+    .searchbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .searchbar input {
+      width: 100%;
+      min-width: 0;
+      background: #191919;
+      border: 1px solid #383838;
+      color: white;
+      padding: 14px 16px;
+      outline: none;
+    }
+    .searchbar input:focus { border-color: var(--red); }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .filter {
+      border: 1px solid #383838;
+      color: #ccc;
+      background: transparent;
+      padding: 9px 14px;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .filter.active, .filter:hover { border-color: var(--red); background: var(--red); color: white; }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 17px;
+    }
+    .product {
+      min-width: 0;
+      background: var(--panel);
+      border: 1px solid #292929;
+      transition: transform .2s, border-color .2s;
+    }
+    .product:hover { transform: translateY(-5px); border-color: #555; }
+    .product-image {
+      position: relative;
+      height: 185px;
+      overflow: hidden;
+      background: #242424;
+    }
+    .product-image img { height: 100%; object-fit: cover; transition: transform .4s; }
+    .product:hover .product-image img { transform: scale(1.05); }
+    .tag {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--red);
+      padding: 5px 8px;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .product-info { padding: 17px; }
+    .product-category { color: var(--red); font-size: 9px; font-weight: 800; letter-spacing: 1px; }
+    .product h3 { font-size: 23px; line-height: 1.1; margin: 8px 0; }
+    .product p { color: var(--muted); font-size: 11px; min-height: 35px; }
+    .product-bottom {
+      border-top: 1px solid #333;
+      margin-top: 16px;
+      padding-top: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .price { font-size: 11px; font-weight: 800; }
+    .price small { display: block; color: var(--muted); font-size: 9px; font-weight: 400; }
+    .ask {
+      border: 0;
+      background: var(--red);
+      color: white;
+      padding: 10px 11px;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .empty { display: none; color: var(--muted); padding: 30px 0; }
+
+    .banner {
+      position: relative;
+      overflow: hidden;
+      background: var(--red);
+      padding: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+    .banner h2 { font-size: clamp(36px, 5vw, 54px); line-height: 1; }
+    .banner p { font-size: 12px; margin-top: 12px; color: #ffe4e6; }
+    .banner .btn { background: var(--white); color: var(--black); flex-shrink: 0; }
+    .banner .btn:hover { background: #eee; }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .about-visual {
+      min-height: 320px;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.3), rgba(0,0,0,.05)),
+        url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1000&q=80') center / cover;
+      border-left: 4px solid var(--red);
+    }
+    .about h2 { font-size: 48px; line-height: 1; margin-bottom: 20px; }
+    .about h2 span { color: var(--red); }
+    .about p { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+    .about-points { display: grid; gap: 12px; }
+    .about-points div { display: flex; gap: 10px; align-items: center; font-size: 12px; }
+    .check { color: var(--red); font-weight: 900; }
+
+    .contact {
+      background: #181818;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .contact h2 { font-size: 50px; line-height: 1; margin-bottom: 15px; }
+    .contact h2 span { color: var(--red); }
+    .contact p { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+    .contact-card { border: 1px solid #383838; padding: 28px; }
+    .contact-card small { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .contact-card strong { display: block; font-size: 23px; margin: 5px 0 18px; }
+
+    footer { padding: 30px 0; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-row p { color: var(--muted); font-size: 10px; }
+    .footer-links { display: flex; gap: 18px; color: #ccc; font-size: 10px; }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 22px; right: 22px;
+      z-index: 30;
+      background: #25d366;
+      color: white;
+      border-radius: 50px;
+      padding: 14px 18px;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px #0008;
+    }
+
+    @media (max-width: 900px) {
+      .navlinks { gap: 13px; }
+      .navlinks a { font-size: 10px; }
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .product-image { height: 210px; }
+      .about-grid { gap: 25px; }
+    }
+    @media (max-width: 620px) {
+      .nav { min-height: 68px; flex-wrap: wrap; padding: 12px 0; }
+      .logo { font-size: 28px; }
+      .navlinks { order: 3; width: 100%; justify-content: space-between; padding: 8px 0 2px; }
+      .navlinks a { font-size: 10px; }
+      .nav > .btn { padding: 10px; font-size: 9px; }
+      .hero { min-height: 500px; background-position: 58% center; }
+      .hero-content { padding: 70px 0; }
+      .hero p { font-size: 13px; }
+      .features { grid-template-columns: 1fr; }
+      .feature { border-right: 0; border-bottom: 1px solid var(--line); padding: 16px 5px; }
+      section { padding: 58px 0; }
+      .section-head { align-items: start; flex-direction: column; }
+      .searchbar { flex-direction: column; }
+      .products { gap: 10px; }
+      .product-image { height: 145px; }
+      .product-info { padding: 12px; }
+      .product h3 { font-size: 20px; }
+      .product p { font-size: 10px; }
+      .product-bottom { align-items: stretch; flex-direction: column; }
+      .ask { width: 100%; }
+      .banner { padding: 30px 22px; flex-direction: column; align-items: start; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+      .about-visual { min-height: 230px; }
+      .about h2, .contact h2 { font-size: 42px; }
+      .footer-row { align-items: start; flex-direction: column; }
+      .whatsapp-float { bottom: 14px; right: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">MOTOR ONE · REPUESTOS Y ACCESORIOS PARA MOTOS</div>
+
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#inicio">MOTOR <span>ONE</span><small>MOTO PARTS & ACCESSORIES</small></a>
+      <nav class="navlinks" aria-label="Navegación principal">
+        <a href="#inicio">INICIO</a>
+        <a href="#catalogo">CATÁLOGO</a>
+        <a href="#nosotros">NOSOTROS</a>
+        <a href="#contacto">CONTACTO</a>
+      </nav>
+      <a class="btn" href="https://wa.me/595981582147" target="_blank" rel="noopener">Consultar ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Potencia · Calidad · Confianza</div>
+          <h1>TODO PARA<br>VIVIR LA <span>RUTA.</span></h1>
+          <p>Encontrá repuestos y accesorios para tu moto. Consultá por disponibilidad, compatibilidad y precios con nuestro equipo.</p>
+          <div class="actions">
+            <a class="btn" href="#catalogo">EXPLORAR CATÁLOGO ↘</a>
+            <a class="btn btn-outline" href="https://wa.me/595981582147?text=Hola%20Motor%20One%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">HABLAR POR WHATSAPP</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container features">
+      <div class="feature"><span class="feature-icon">✦</span><div><strong>REPUESTOS Y ACCESORIOS</strong><span>Opciones para tu moto</span></div></div>
+      <div class="feature"><span class="feature-icon">⌕</span><div><strong>ATENCIÓN PERSONALIZADA</strong><span>Consultá antes de comprar</span></div></div>
+      <div class="feature"><span class="feature-icon">➤</span><div><strong>CONTACTO DIRECTO</strong><span>Atención por WhatsApp</span></div></div>
+    </div>
+
+    <section id="catalogo">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">Encontrá lo que buscás</div><h2>NUESTRO <span>CATÁLOGO</span></h2></div>
+          <p>Explorá las categorías y consultanos para confirmar disponibilidad y compatibilidad con tu modelo de moto.</p>
+        </div>
+
+        <div class="searchbar">
+          <input id="search" type="search" placeholder="Buscar producto o categoría..." aria-label="Buscar productos">
+          <a class="btn" href="https://wa.me/595981582147?text=Hola%20Motor%20One%2C%20busco%20un%20repuesto." target="_blank" rel="noopener">PEDIR UN REPUESTO</a>
+        </div>
+        <div class="filters" aria-label="Filtrar productos">
+          <button class="filter active" data-category="todos">Todos</button>
+          <button class="filter" data-category="motor">Motor</button>
+          <button class="filter" data-category="frenos">Frenos</button>
+          <button class="filter" data-category="transmision">Transmisión</button>
+          <button class="filter" data-category="accesorios">Accesorios</button>
+        </div>
+
+        <div class="products" id="products">
+          <article class="product" data-category="motor" data-name="bujia encendido motor">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80" alt="Motocicleta en detalle" loading="lazy"><span class="tag">Motor</span></div>
+            <div class="product-info"><div class="product-category">MOTOR</div><h3>Bujías y encendido</h3><p>Consultá opciones compatibles con tu motocicleta.</p><div class="product-bottom"><div class="price">Consultar precio<small>Precio en guaraníes</small></div><button class="ask" data-product="Bujías y encendido">CONSULTAR ↗</button></div></div>
+          </article>
+
+          <article class="product" data-category="frenos" data-name="pastillas freno discos frenos">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80" alt="Motocicleta deportiva" loading="lazy"><span class="tag">Frenos</span></div>
+            <div class="product-info"><div class="product-category">SEGURIDAD</div><h3>Pastillas de freno</h3><p>Consultá medidas y compatibilidad por modelo.</p><div class="product-bottom"><div class="price">Consultar precio<small>Precio en guaraníes</small></div><button class="ask" data-product="Pastillas de freno">CONSULTAR ↗</button></div></div>
+          </article>
+
+          <article class="product" data-category="transmision" data-name="cadena piñon corona transmision">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80" alt="Motocicleta de alto rendimiento" loading="lazy"><span class="tag">Transmisión</span></div>
+            <div class="product-info"><div class="product-category">TRANSMISIÓN</div><h3>Kit de transmisión</h3><p>Consultá kits según cilindrada y modelo.</p><div class="product-bottom"><div class="price">Consultar precio<small>Precio en guaraníes</small></div><button class="ask" data-product="Kit de transmisión">CONSULTAR ↗</button></div></div>
+          </article>
+
+          <article class="product" data-category="accesorios" data-name="casco accesorios equipamiento">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1558980394-0c9a0e7c1c5c?auto=format&fit=crop&w=700&q=80" alt="Accesorios de motocicleta" loading="lazy"><span class="tag">Accesorios</span></div>
+            <div class="product-info"><div class="product-category">EQUIPAMIENTO</div><h3>Accesorios para moto</h3><p>Consultá por accesorios y equipamiento disponibles.</p><div class="product-bottom"><div class="price">Consultar precio<small>Precio en guaraníes</small></div><button class="ask" data-product="Accesorios para moto">CONSULTAR ↗</button></div></div>
+          </article>
+
+          <article class="product" data-category="motor" data-name="filtros aceite mantenimiento motor">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80" alt="Motocicleta para mantenimiento" loading="lazy"><span class="tag">Motor</span></div>
+            <div class="product-info"><div class="product-category">MANTENIMIENTO</div><h3>Filtros y lubricación</h3><p>Consultá alternativas para el mantenimiento de tu moto.</p><div class="product-bottom"><div class="price">Consultar precio<small>Precio en guaraníes</small></div><button class="ask" data-product="Filtros y lubricación">CONSULTAR ↗</button></div></div>
+          </article>
+
+          <article class="product" data-category="frenos" data-name="disco freno sistema seguridad">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80" alt="Moto deportiva en detalle" loading="lazy"><span class="tag">Frenos</span></div>
+            <div class="product-info"><div class="product-category">SEGURIDAD</div><h3>Sistema de frenos</h3><p>Consultá piezas disponibles para tu sistema de freno.</p><div class="product-bottom"><div class="price">Consultar precio<small>Precio en guaraníes</small></div><button class="ask" data-product="Sistema de frenos">CONSULTAR ↗</button></div></div>
+          </article>
+
+          <article class="product" data-category="transmision" data-name="piñones cadena corona kit arrastre">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80" alt="Moto lista para la ruta" loading="lazy"><span class="tag">Transmisión</span></div>
+            <div class="product-info"><div class="product-category">TRANSMISIÓN</div><h3>Cadenas y piñones</h3><p>Consultá medidas y opciones para tu modelo.</p><div class="product-bottom"><div class="price">Consultar precio<small>Precio en guaraníes</small></div><button class="ask" data-product="Cadenas y piñones">CONSULTAR ↗</button></div></div>
+          </article>
+
+          <article class="product" data-category="accesorios" data-name="espejos manillares accesorios">
+            <div class="product-image"><img src="https://images.unsplash.com/photo-1558980394-0c9a0e7c1c5c?auto=format&fit=crop&w=700&q=80" alt="Detalles y accesorios de moto" loading="lazy"><span class="tag">Accesorios</span></div>
+            <div class="product-info"><div class="product-category">PERSONALIZACIÓN</div><h3>Accesorios y detalles</h3><p>Consultá opciones para equipar tu motocicleta.</p><div class="product-bottom"><div class="price">Consultar precio<small>Precio en guaraníes</small></div><button class="ask" data-product="Accesorios y detalles">CONSULTAR ↗</button></div></div>
+          </article>
+        </div>
+        <p class="empty" id="empty">No encontramos resultados. Probá con otra búsqueda o consultanos por WhatsApp.</p>
+        <p style="font-size:10px;color:#888;margin-top:18px;">Catálogo inicial de ejemplo: las imágenes son ilustrativas. Confirmaremos los productos reales, las fotos y la disponibilidad antes de publicar la versión definitiva.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="banner">
+        <div><h2>¿NO ENCONTRÁS<br>LO QUE BUSCÁS?</h2><p>Escribinos. Te ayudamos a consultar por el repuesto que necesitás.</p></div>
+        <a class="btn" href="https://wa.me/595981582147?text=Hola%20Motor%20One%2C%20estoy%20buscando%20un%20repuesto%20para%20mi%20moto." target="_blank" rel="noopener">CONSULTAR AHORA ↗</a>
+      </div>
+    </div>
+
+    <section id="nosotros">
+      <div class="container about-grid">
+        <div class="about-visual" role="img" aria-label="Fotografía de motocicleta"></div>
+        <div class="about">
+          <div class="eyebrow">Nuestra identidad</div>
+          <h2>PASIÓN POR LAS <span>DOS RUEDAS.</span></h2>
+          <p>En Motor One queremos ayudarte a encontrar repuestos y accesorios para tu motocicleta con una atención directa y práctica. Consultá por tu modelo y te orientaremos sobre las opciones disponibles.</p>
+          <div class="about-points">
+            <div><span class="check">✓</span> Atención directa y personalizada</div>
+            <div><span class="check">✓</span> Consultas por modelo de motocicleta</div>
+            <div><span class="check">✓</span> Contacto fácil desde tu celular</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow">Estamos para ayudarte</div>
+          <h2>HABLEMOS DE<br><span>TU MOTO.</span></h2>
+          <p>Contactanos para consultar precios, disponibilidad o compatibilidad. Te atenderemos por WhatsApp.</p>
+          <a class="btn" href="https://wa.me/595981582147?text=Hola%20Motor%20One%2C%20quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener">ESCRIBIR POR WHATSAPP ↗</a>
+        </div>
+        <div class="contact-card">
+          <small>Atención por WhatsApp</small>
+          <strong>+595 981 582 147</strong>
+          <a href="https://wa.me/595981582147" target="_blank" rel="noopener" class="btn btn-outline">INICIAR CONVERSACIÓN ↗</a>
+          <p style="margin:20px 0 0;font-size:10px;">Ubicación y horarios: información pendiente de confirmar.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <a class="logo" href="#inicio">MOTOR <span>ONE</span><small>MOTO PARTS & ACCESSORIES</small></a>
+      <p>© <span id="year"></span> Motor One. Todos los derechos reservados.</p>
+      <div class="footer-links"><a href="#catalogo">Catálogo</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/595981582147" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">WhatsApp ↗</a>
+
+  <script>
+    const search = document.getElementById('search');
+    const products = [...document.querySelectorAll('.product')];
+    const filters = [...document.querySelectorAll('.filter')];
+    const empty = document.getElementById('empty');
+    let category = 'todos';
+
+    function filterProducts() {
+      const term = search.value.toLocaleLowerCase('es').trim();
+      let visible = 0;
+
+      products.forEach(product => {
+        const matchesCategory = category === 'todos' || product.dataset.category === category;
+        const matchesTerm = (product.dataset.name + ' ' + product.innerText)
+          .toLocaleLowerCase('es').includes(term);
+        const show = matchesCategory && matchesTerm;
+        product.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      empty.style.display = visible ? 'none' : 'block';
+    }
+
+    filters.forEach(button => {
+      button.addEventListener('click', () => {
+        category = button.dataset.category;
+        filters.forEach(item => item.classList.toggle('active', item === button));
+        filterProducts();
+      });
+    });
+
+    search.addEventListener('input', filterProducts);
+
+    document.querySelectorAll('.ask').forEach(button => {
+      button.addEventListener('click', () => {
+        const product = button.dataset.product;
+        const message = `Hola Motor One, quiero consultar el precio y la disponibilidad de: ${product}. ¿Es compatible con mi moto?`;
+        window.open('https://wa.me/595981582147?text=' + encodeURIComponent(message), '_blank', 'noopener');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
